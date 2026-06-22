@@ -32,3 +32,11 @@ export { Bench } from "./equipment/Bench";
 
 export { EXERCISES, squat, benchPress, deadlift, dumbbellCurl } from "./exercises";
 export type { Exercise, ExerciseInstance } from "./exercises";
+
+// Rigged human-model rendering (loads a GLB, retargets the rig poses, paints
+// muscle activation onto the skin).
+export { HumanFigure } from "./human/HumanFigure";
+export { Retargeter } from "./human/retarget";
+export type { ArmPose } from "./human/retarget";
+export { muscleGroupOf, muscleEmissive } from "./human/muscleGroups";
+export { armPoseFor, groundFor, cameraFor } from "./human/lifts";

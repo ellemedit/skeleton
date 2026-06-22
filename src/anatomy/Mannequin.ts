@@ -26,15 +26,21 @@ function buildBoneGeometry(b: BoneDef): { geo: BufferGeometry; offset: Vector3 }
       // Capsule is centered on its origin; shift it down so the segment hangs
       // from the joint along -Y.
       const off = b.meshOffset ? new Vector3(...meshOffset) : new Vector3(0, -len / 2, 0);
-      return { geo: new CapsuleGeometry(rad, len, 6, 14), offset: off };
+      return { geo: new CapsuleGeometry(rad, len, 12, 24), offset: off };
     }
     case "box": {
       const s = b.size ?? [0.1, 0.1, 0.1];
-      return { geo: new BoxGeometry(s[0], s[1], s[2]), offset: new Vector3(...meshOffset) };
+      return { geo: new BoxGeometry(s[0], s[1], s[2], 2, 2, 2), offset: new Vector3(...meshOffset) };
     }
     case "sphere": {
       const rad = b.radius ?? 0.1;
-      return { geo: new SphereGeometry(rad, 24, 18), offset: new Vector3(...meshOffset) };
+      return { geo: new SphereGeometry(rad, 36, 24), offset: new Vector3(...meshOffset) };
+    }
+    case "ellipsoid": {
+      const s = b.size ?? [0.2, 0.2, 0.2];
+      const geo = new SphereGeometry(1, 32, 24);
+      geo.scale(s[0] / 2, s[1] / 2, s[2] / 2);
+      return { geo, offset: new Vector3(...meshOffset) };
     }
   }
 }
@@ -77,6 +83,27 @@ export class Mannequin {
       if (!parent) throw new Error(`Bone "${b.name}" references missing parent "${b.parent}"`);
       parent.add(joint);
       this.joints.set(b.name, joint);
+    }
+
+    // Filler spheres smooth the connection between segments at each joint.
+    const fillers: Array<[string, number, boolean]> = [
+      ["shoulder", 0.062, true],
+      ["elbow", 0.05, true],
+      ["hip", 0.092, true],
+      ["knee", 0.066, true],
+      ["wrist", 0.046, true],
+      ["ankle", 0.052, true],
+      ["neck", 0.056, false],
+    ];
+    for (const [base, r, sided] of fillers) {
+      for (const nm of sided ? [`${base}L`, `${base}R`] : [base]) {
+        const joint = this.joints.get(nm);
+        if (!joint) continue;
+        const filler = new Mesh(new SphereGeometry(r, 20, 14), this.bodyMaterial);
+        filler.castShadow = true;
+        filler.receiveShadow = true;
+        joint.add(filler);
+      }
     }
 
     // Attach muscle overlays to their bones.

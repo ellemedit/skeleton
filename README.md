@@ -1,78 +1,63 @@
 # Myo · 근육 모션 마네킹 렌더러
 
-스타일라이즈드 사람 모형(마네킹)으로 **관절·근육 움직임을 섬세하게 표현·강조**하고, **바벨/덤벨 등 운동기구**와 함께 운동 동작을 렌더링하는 Three.js 기반 렌더러. 실사 사실성보다 **근육 부위 강조와 모션 가독성**에 초점.
-
-> 스쿼트 · 벤치프레스 · 데드리프트(+덤벨 컬) 샘플 포함. EMG 문헌에 근거한 부위별 근육 활성화를 히트맵으로 시각화.
+리깅된 **인체 3D 모델**이 스쿼트·벤치프레스·데드리프트를 수행하며, 동작하는 **근육을 피부 위 히트맵으로 강조**하는 렌더러. 운동기구(바벨·덤벨·벤치)도 함께 렌더링한다.
 
 | 백 스쿼트 | 벤치프레스 | 데드리프트 | 덤벨 컬 |
 | --- | --- | --- | --- |
 | ![squat](docs/figures/render/squat.png) | ![bench](docs/figures/render/bench.png) | ![deadlift](docs/figures/render/deadlift.png) | ![curl](docs/figures/render/curl.png) |
 
-<sub>위 이미지는 실제 3D 지오메트리(입체 캡슐·박스·타원체)를 카메라 투영 + z-buffer + 음영으로 렌더링한 결과(`npm run render`). 빛나는 부위가 활성화된 근육(히트맵). 브라우저 인터랙티브 렌더링은 `npm run dev`.
+<sub>실제 리깅 인체 메시 위에 EMG 근거 활성도를 히트맵(빨강=고활성)으로 입힌 결과. 이 환경엔 WebGL/브라우저가 없어 `npm run render`가 three.js 씬을 **CPU 소프트웨어 래스터라이저**로 렌더링했고, 브라우저 데모(`npm run dev`)는 동일 모델·포즈·근육 강조를 WebGL로 렌더링한다.</sub>
 
-> 이 환경은 WebGL/브라우저가 없어 `npm run render`가 three.js 씬을 CPU 소프트웨어 래스터라이저로 렌더링한다. 실제 앱(`npm run dev`)은 동일한 씬을 WebGL로 렌더링한다. 가벼운 2D 도식 미리보기는 `npm run snapshot`(SVG, `docs/figures/*.svg`).</sub>
+## 구조
+
+근육 강조를 정밀히 제어하기 위해 **절차적 리그(pose engine)**와 **사실적 인체 메시(skin)**를 분리했다.
+
+```
+ EMG 기반 키프레임 (exercises/)         ← 운동 동작 저작
+        │  Animator (motion/)           ← 보간
+        ▼
+ 절차적 리그 Mannequin (anatomy/)        ← 검증된 관절 포즈의 "소스"
+        │  Retargeter (human/)          ← 월드-델타 리타게팅
+        ▼
+ 리깅 인체 GLB + 스키닝                  ← 사람다운 형상
+        │  muscleGroups (human/)        ← 정점→근육군, 활성도→히트맵 발광
+        ▼
+ WebGL(데모) / CPU 래스터(헤드리스)      ← 렌더링
+```
+
+- **포즈 소스**: 프리미티브 리그(`Mannequin`)에 3대 운동을 키프레임으로 저작하고, `scripts/verify.ts`로 발 접지·스쿼트 깊이·바 높이 등 물리 정합을 수치 검증한다.
+- **리타게팅**: 검증된 리그 포즈를 인체 GLB(Mixamo) 스켈레톤으로 옮긴다(다리·몸통은 월드-델타, 팔은 운동별 지정, 발 기준 접지).
+- **근육 강조**: 인체 메시의 각 정점을 근육군으로 분류하고, 활성도를 피부 위 히트맵 발광으로 표시한다.
 
 ## 빠른 시작
 
 ```bash
 npm install
-npm run dev       # 데모(브라우저): 운동 선택 · 재생/스크럽 · 근육 활성도 범례
+npm run dev       # 브라우저 데모(WebGL). 인체 모델을 three.js 예제에서 런타임 로드
 ```
-
-기타 스크립트:
 
 ```bash
-npm run build     # 타입체크 + 프로덕션 번들
-npm run render    # 헤드리스 3D 렌더(소프트웨어 래스터라이저) → docs/figures/render/*.png
-npm run verify    # 헤드리스 자세 수치 검증(발 접지·바 위치·깊이 등)
-npm run snapshot  # 2D 도식 미리보기 → docs/figures/*.svg
+npm run render    # 헤드리스 3D 렌더(CPU) → docs/figures/render/*.png
+npm run build     # 타입체크 + 번들
+npm run verify    # 포즈 물리 정합 수치 검증(절차적 리그)
+npm run snapshot  # 절차적 리그 2D 도식(SVG) → docs/figures/*.svg
 ```
 
-## 기능
+데모는 운동 선택, 재생/일시정지/스크럽/속도, 근육 활성도 강조 토글, 실시간 활성도 범례를 제공한다.
 
-- **절차적 마네킹** — 외부 에셋/라이선스 의존 없이 프리미티브로 조립한 14개 관절 골격.
-- **근육 강조** — 14개 근육군을 뼈에 부착. 활성도(0..1)가 **히트맵 색 + 자발광 강도 + 수축 팽창**으로 표현. `Heatmap`/`Accent` 모드.
-- **모션** — 키프레임 보간(`smoothstep`)과 핑퐁 루프로 1렙(하강↔상승)을 자연스럽게 반복. 재생/일시정지·속도·스크럽.
-- **운동기구** — 바벨(바+플레이트), 덤벨, 평벤치. 매 프레임 손/몸에 동적 부착.
-- **실시간 활성도 HUD** — 현재 부위별 근육 활성도를 막대로 표시.
+## 모델 / 라이선스
 
-## 동작 원리 (요약)
+- 인체 모델은 three.js 예제의 **Xbot**(Mixamo) GLB를 **런타임에 로드**한다(저장소에 바이너리를 재배포하지 않음). 출처: [three.js examples](https://github.com/mrdoob/three.js/tree/dev/examples/models/gltf).
+- 코드는 MIT. 모델 에셋의 라이선스는 원본(three.js / Mixamo)을 따른다.
+- 근육 활성화 값은 EMG 문헌 **근거 기반 근사치**(교육/시각화용). 출처는 [docs/RESEARCH.md](docs/RESEARCH.md).
 
-- Three.js `Object3D` 계층으로 **관절을 중첩** → 부모 회전이 자식에 전파(전방 운동학, FK).
-- 운동은 `Keyframe`(관절 각도 + 근육 활성화 + 루트 위치/회전)으로 저작. `Animator`가 보간해 `MotionSample`을 만들고 `Mannequin.apply()`가 씬에 반영.
-- 근육은 활성도에 따라 `emissive`(히트맵) 색·강도와 메시 스케일(수축)을 갱신.
+## 문서
 
-자세한 내용:
-- [리서치 · RESEARCH.md](docs/RESEARCH.md) — 기술 스택, 해부 리소스, 3대 운동 EMG 근거.
-- [구현안 · IMPLEMENTATION.md](docs/IMPLEMENTATION.md) — 아키텍처, 데이터 모델, 검증 방법.
-
-## 공개 API (라이브러리)
-
-```ts
-import { Stage, Mannequin, Animator, EXERCISES } from "./src";
-
-const stage = new Stage(document.getElementById("stage")!);
-const mannequin = new Mannequin();
-stage.scene.add(mannequin.root);
-
-const ex = EXERCISES[0];                       // 스쿼트
-const inst = ex.setup(stage.scene, mannequin); // 기구 배치
-const anim = new Animator(ex.keyframes, { duration: ex.duration, loop: ex.loop });
-
-stage.applyCameraHint(inst.camera);
-stage.setFrameCallback((dt) => {
-  mannequin.apply(anim.update(dt)); // 포즈+근육 활성화 적용
-  inst.update();                    // 기구를 신체에 부착
-});
-stage.start();
-```
-
-## 기술 스택
-
-TypeScript · Three.js `0.184` · Vite. 의존성 최소(런타임은 `three`만).
+- [리서치 · RESEARCH.md](docs/RESEARCH.md) — 렌더링 스택, 인체/해부 리소스 조사, 3대 운동 EMG 근거.
+- [구현안 · IMPLEMENTATION.md](docs/IMPLEMENTATION.md) — 아키텍처, 리타게팅, 근육 매핑, 검증 방법.
 
 ## 한계 / 다음 단계
 
-- 스타일라이즈드(프리미티브) 표현 — 사실적 근육 메시는 향후 Z-Anatomy(CC BY-SA) 등으로 교체 가능(설계상 분리).
-- 근육 활성화 값은 EMG **근거 기반 근사치**(교육/시각화용).
-- 동작은 저작된 FK 키프레임 — 실시간 IK/물리는 범위 외.
+- 근육은 별도 메시가 아니라 피부 표면 히트맵(활성도 발광)으로 표현된다. 실제 개별 근육 메시(écorché)로 교체하려면 `muscleGroups`/`HumanFigure`의 강조 레이어만 바꾸면 된다.
+- 팔 포즈는 운동별로 직접 저작했고(리그 바인드 차이), 벤치(누운 자세)는 근사치다. 다리·몸통은 리타게팅으로 정합.
+- 데모는 모델을 런타임에 네트워크로 로드한다(오프라인 시 실패 메시지 표시).

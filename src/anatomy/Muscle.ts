@@ -1,15 +1,15 @@
 import { Mesh, MeshStandardMaterial, SphereGeometry, MathUtils, Vector3 } from "three";
 import type { MuscleId, MuscleInstance } from "./rig";
-import { MUSCLE_CLAY, activationColor } from "../core/colors";
+import { CLAY, activationColor } from "../core/colors";
 import type { ColorMode } from "./types";
 
 /** Shared unit-sphere geometry; each muscle scales it into an ellipsoid. */
-const UNIT_SPHERE = new SphereGeometry(1, 20, 16);
+const UNIT_SPHERE = new SphereGeometry(1, 32, 24);
 
 /** Peak emissive intensity at full activation. */
 const MAX_GLOW = 1.9;
 /** How much a muscle thickens (perpendicular to its length) when fully active. */
-const BULGE = 0.4;
+const BULGE = 0.26;
 
 /**
  * A single muscle overlay. It renders as a soft ellipsoid sitting just proud
@@ -28,8 +28,8 @@ export class Muscle {
     this.name = def.name;
     this.id = def.id;
     this.material = new MeshStandardMaterial({
-      color: MUSCLE_CLAY,
-      roughness: 0.72,
+      color: CLAY,
+      roughness: 0.78,
       metalness: 0.0,
       emissive: 0x000000,
       emissiveIntensity: 0,

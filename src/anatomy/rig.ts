@@ -11,7 +11,7 @@
  *   figure standing upright with arms at its sides.
  */
 
-export type BoneShape = "capsule" | "box" | "sphere";
+export type BoneShape = "capsule" | "box" | "sphere" | "ellipsoid";
 
 export interface BoneDef {
   readonly name: string;
@@ -102,9 +102,9 @@ export const MUSCLE_INFO: Record<MuscleId, MuscleInfo> = {
 
 /** Central (non-sided) bones along the spine. */
 const CENTRAL_BONES: BoneDef[] = [
-  { name: "pelvis", parent: null, offset: [0, 0.955, 0], shape: "box", size: [0.3, 0.16, 0.19] },
-  { name: "spine", parent: "pelvis", offset: [0, 0.14, 0], shape: "box", size: [0.26, 0.2, 0.16], meshOffset: [0, 0.02, 0] },
-  { name: "chest", parent: "spine", offset: [0, 0.18, 0], shape: "box", size: [0.34, 0.24, 0.19], meshOffset: [0, 0.02, 0] },
+  { name: "pelvis", parent: null, offset: [0, 0.955, 0], shape: "ellipsoid", size: [0.32, 0.2, 0.22] },
+  { name: "spine", parent: "pelvis", offset: [0, 0.14, 0], shape: "ellipsoid", size: [0.28, 0.24, 0.19], meshOffset: [0, 0.02, 0] },
+  { name: "chest", parent: "spine", offset: [0, 0.18, 0], shape: "ellipsoid", size: [0.36, 0.3, 0.22], meshOffset: [0, 0.02, 0] },
   { name: "neck", parent: "chest", offset: [0, 0.18, 0], shape: "capsule", length: 0.1, radius: 0.05 },
   { name: "head", parent: "neck", offset: [0, 0.1, 0], shape: "sphere", radius: 0.12, meshOffset: [0, 0.08, 0] },
 ];

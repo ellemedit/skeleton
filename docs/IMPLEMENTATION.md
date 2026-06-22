@@ -6,9 +6,9 @@
 
 | 요구사항 | 구현 |
 | --- | --- |
-| 사람 모형 마네킹 | `anatomy/rig.ts`의 데이터로 조립한 절차적 골격 (`Mannequin`) |
-| 근육 부위 강조 | `Muscle`이 활성도→자발광 색(히트맵)·강도로 강조, HUD 범례에 실시간 표시 |
-| 근육 움직임을 섬세하게 | 활성도→근육 메시 **팽창(bulge)**, 키프레임마다 부위별 활성도 보간 |
+| 사람 모형 마네킹 | 리깅 인체 GLB(Mixamo Xbot) + 절차적 리그(`Mannequin`)를 포즈 소스로 **리타게팅** |
+| 근육 부위 강조 | 인체 메시 정점을 근육군으로 분류, 활성도를 **피부 표면 히트맵 발광**으로 강조 + HUD 범례 |
+| 근육 움직임을 섬세하게 | 키프레임마다 부위별 활성도를 보간해 피부 위 히트맵이 동작과 함께 변화 |
 | 모션 렌더링 | `Animator`의 키프레임 보간(`smoothstep`, loop/pingpong/once) |
 | 관절/근육 움직임 | 씬 그래프 계층(FK) + 루트 위치/회전 채널 |
 | 바벨/덤벨 운동기구 | `equipment/`의 `Barbell`/`Dumbbell`/`Bench`, 손목에 동적 부착 |
@@ -44,6 +44,11 @@ src/
     types.ts        Exercise/ExerciseInstance 인터페이스
     squat.ts benchPress.ts deadlift.ts dumbbellCurl.ts
     index.ts        EXERCISES 배열
+  human/
+    retarget.ts     절차적 리그 포즈 → 인체 GLB 스켈레톤(월드-델타 리타게팅, 발 접지)
+    muscleGroups.ts 인체 메시 정점 → 근육군 분류, 활성도 → 히트맵 발광
+    HumanFigure.ts  GLB 로드 + 스키닝(WebGL) + 정점별 근육 발광(onBeforeCompile)
+    lifts.ts        운동별 팔 포즈·접지·카메라(헤드리스/데모 공용)
   index.ts          라이브러리 배럴(공개 API)
 demo/
   index.html style.css main.ts   데모 앱(운동 선택·재생·근육 범례)
@@ -91,7 +96,7 @@ interface Keyframe {
      - 발바닥 접지(toe/heel y≈0), 스쿼트 깊이(hip<knee), 데드 바=플레이트 반경(0.225), 벤치 토르소 높이·바가 가슴↔머리 위 등.
    - 각도는 손으로 맞추기 어려워, 동일 엔진으로 **각도 솔버**를 돌려(예: 벤치 다리·팔, 데드 힌지) 목표(발 평평·바 높이)를 만족하는 값을 탐색해 확정했다.
 2. **3D 렌더 — `npm run render`** (`scripts/render3d.ts`)
-   - 이 환경엔 WebGL2(headless-gl은 WebGL1 전용)·브라우저가 없어, three.js 씬의 **실제 메시 삼각형을 CPU에서 직접 래스터라이즈**(카메라 투영 + z-buffer + 법선 음영 + 재질색/근육 자발광)해 `docs/figures/render/*.png`를 만든다. 실제 3D 지오메트리 출력.
+   - 이 환경엔 WebGL2(headless-gl은 WebGL1 전용)·브라우저가 없어, 리깅 인체 GLB를 three GLTFLoader로 로드 → 리타게팅으로 포즈 → **CPU 선형 블렌드 스키닝** → 근육 히트맵 발광 → **소프트웨어 래스터라이즈**(투영 + z-buffer + 부드러운 법선 음영 + 림 라이트 + 접지 그림자 + SSAA)해 `docs/figures/render/*.png`를 만든다. 브라우저 데모는 동일 모델·포즈를 WebGL로 렌더링한다.
 3. **2D 도식 — `npm run snapshot`** (`scripts/snapshot.ts`)
    - 동일 데이터를 3/4 시점으로 투영한 경량 SVG(+PNG) 미리보기.
 
