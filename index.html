@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>Myo · 근육 모션 마네킹 렌더러</title>
+    <link rel="stylesheet" href="/demo/style.css" />
+  </head>
+  <body>
+    <div id="stage"></div>
+
+    <header id="title">
+      <h1>Myo</h1>
+      <p>근육 모션 마네킹 렌더러 · muscle-motion mannequin</p>
+    </header>
+
+    <section id="panel">
+      <div class="group">
+        <span class="label">운동 · Exercise</span>
+        <div id="exercises" class="chips"></div>
+      </div>
+
+      <div id="about" class="about"></div>
+
+      <div class="group">
+        <div class="row">
+          <button id="play" class="btn primary">⏸ Pause</button>
+          <span id="phase" class="phase">—</span>
+        </div>
+        <input id="scrub" class="slider" type="range" min="0" max="1000" value="0" />
+        <div class="row between">
+          <label class="mini">속도 <span id="speedVal">1.0×</span></label>
+          <input id="speed" class="slider short" type="range" min="25" max="200" value="100" />
+        </div>
+      </div>
+
+      <div class="group">
+        <label class="row check"><input id="showMuscles" type="checkbox" checked /> 근육 활성도 강조 표시</label>
+      </div>
+    </section>
+
+    <section id="legend">
+      <div class="legend-head">
+        <span>근육 활성도 · Muscle activation</span>
+      </div>
+      <div id="bars" class="bars"></div>
+    </section>
+
+    <footer id="hint">드래그로 회전 · 휠로 줌 · Drag to orbit, scroll to zoom</footer>
+
+    <script type="module" src="/demo/main.ts"></script>
+  </body>
+</html>
