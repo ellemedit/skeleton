@@ -90,10 +90,12 @@ interface Keyframe {
    - 각 운동의 키프레임을 적용하고 `updateMatrixWorld` 후 관절 월드 좌표를 읽어 불변식 확인:
      - 발바닥 접지(toe/heel y≈0), 스쿼트 깊이(hip<knee), 데드 바=플레이트 반경(0.225), 벤치 토르소 높이·바가 가슴↔머리 위 등.
    - 각도는 손으로 맞추기 어려워, 동일 엔진으로 **각도 솔버**를 돌려(예: 벤치 다리·팔, 데드 힌지) 목표(발 평평·바 높이)를 만족하는 값을 탐색해 확정했다.
-2. **시각 스냅샷 — `npm run snapshot`** (`scripts/snapshot.ts`)
-   - 동일 데이터를 3/4 턴테이블 시점으로 투영해 `docs/figures/*.svg`(+PNG) 생성. 근육 점은 3D와 같은 히트맵 색을 쓴다 → 자세·강조의 충실한 2D 미리보기.
+2. **3D 렌더 — `npm run render`** (`scripts/render3d.ts`)
+   - 이 환경엔 WebGL2(headless-gl은 WebGL1 전용)·브라우저가 없어, three.js 씬의 **실제 메시 삼각형을 CPU에서 직접 래스터라이즈**(카메라 투영 + z-buffer + 법선 음영 + 재질색/근육 자발광)해 `docs/figures/render/*.png`를 만든다. 실제 3D 지오메트리 출력.
+3. **2D 도식 — `npm run snapshot`** (`scripts/snapshot.ts`)
+   - 동일 데이터를 3/4 시점으로 투영한 경량 SVG(+PNG) 미리보기.
 
-> 본 환경 제약상 실제 WebGL 화면 캡처는 수행하지 못했다. 브라우저(`npm run dev`)에서의 최종 시각 QA는 별도 권장. 단, 위 2단계로 **물리 정합과 근육 강조 매핑은 검증 완료**.
+> 실제 앱(`npm run dev`)은 같은 씬을 WebGL로 렌더링한다. 브라우저에서의 최종 시각 QA는 별도 권장하나, 위 단계로 **물리 정합·근육 강조 매핑·3D 형상**을 모두 확인했다.
 
 ## 7. 확장 방법
 

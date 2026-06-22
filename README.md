@@ -4,11 +4,13 @@
 
 > 스쿼트 · 벤치프레스 · 데드리프트(+덤벨 컬) 샘플 포함. EMG 문헌에 근거한 부위별 근육 활성화를 히트맵으로 시각화.
 
-| 백 스쿼트 (bottom) | 벤치프레스 (bottom) | 데드리프트 (bottom) | 덤벨 컬 (top) |
+| 백 스쿼트 | 벤치프레스 | 데드리프트 | 덤벨 컬 |
 | --- | --- | --- | --- |
-| ![squat](docs/figures/squat-bottom.png) | ![bench](docs/figures/bench-bottom.png) | ![deadlift](docs/figures/deadlift-bottom.png) | ![curl](docs/figures/curl-contracted.png) |
+| ![squat](docs/figures/render/squat.png) | ![bench](docs/figures/render/bench.png) | ![deadlift](docs/figures/render/deadlift.png) | ![curl](docs/figures/render/curl.png) |
 
-<sub>위 이미지는 WebGL이 아닌, 렌더러와 **동일한 데이터**를 3/4 측면도로 투영한 헤드리스 스냅샷(`npm run snapshot`). 흰색=골격, 색점=근육(히트맵 = 활성도), 회색=기구. 실제 인터랙티브 렌더링은 `npm run dev`.</sub>
+<sub>위 이미지는 실제 3D 지오메트리(입체 캡슐·박스·타원체)를 카메라 투영 + z-buffer + 음영으로 렌더링한 결과(`npm run render`). 빛나는 부위가 활성화된 근육(히트맵). 브라우저 인터랙티브 렌더링은 `npm run dev`.
+
+> 이 환경은 WebGL/브라우저가 없어 `npm run render`가 three.js 씬을 CPU 소프트웨어 래스터라이저로 렌더링한다. 실제 앱(`npm run dev`)은 동일한 씬을 WebGL로 렌더링한다. 가벼운 2D 도식 미리보기는 `npm run snapshot`(SVG, `docs/figures/*.svg`).</sub>
 
 ## 빠른 시작
 
@@ -21,8 +23,9 @@ npm run dev       # 데모(브라우저): 운동 선택 · 재생/스크럽 · �
 
 ```bash
 npm run build     # 타입체크 + 프로덕션 번들
+npm run render    # 헤드리스 3D 렌더(소프트웨어 래스터라이저) → docs/figures/render/*.png
 npm run verify    # 헤드리스 자세 수치 검증(발 접지·바 위치·깊이 등)
-npm run snapshot  # docs/figures/*.svg(+png) 자세 스냅샷 생성
+npm run snapshot  # 2D 도식 미리보기 → docs/figures/*.svg
 ```
 
 ## 기능
