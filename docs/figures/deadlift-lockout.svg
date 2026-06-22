@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="460" viewBox="0 0 380 460">
+<rect width="380" height="460" fill="#15171c"/>
+<line x1="0" y1="423.7" x2="380" y2="423.7" stroke="#2c3038" stroke-width="1"/>
+<circle cx="210.7" cy="311.1" r="17.2" fill="#49e98d" opacity="0.28"/>
+<circle cx="181.2" cy="311.1" r="17.2" fill="#49e98d" opacity="0.28"/>
+<circle cx="201.3" cy="314.4" r="19.0" fill="#96ee4a" opacity="0.41"/>
+<circle cx="171.8" cy="314.4" r="19.0" fill="#96ee4a" opacity="0.41"/>
+<circle cx="200.1" cy="307.7" r="12.8" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="183.9" cy="307.7" r="12.8" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="202.1" cy="376.1" r="11.3" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="172.6" cy="376.1" r="11.3" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="196.7" cy="271.0" r="17.9" fill="#e4f24c" opacity="0.53"/>
+<circle cx="170.2" cy="271.0" r="17.9" fill="#e4f24c" opacity="0.53"/>
+<circle cx="198.4" cy="238.7" r="17.8" fill="#50eb49" opacity="0.35"/>
+<circle cx="184.7" cy="236.7" r="20.5" fill="#c2f04b" opacity="0.47"/>
+<circle cx="210.6" cy="203.9" r="10.4" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="190.0" cy="203.9" r="10.4" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="208.8" cy="217.4" r="16.7" fill="#adef4b" opacity="0.44"/>
+<circle cx="170.5" cy="217.4" r="16.7" fill="#adef4b" opacity="0.44"/>
+<circle cx="189.9" cy="185.6" r="22.4" fill="#e4f24c" opacity="0.53"/>
+<circle cx="221.1" cy="182.8" r="10.6" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="165.2" cy="182.8" r="10.6" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="223.8" cy="209.9" r="9.7" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="167.8" cy="209.9" r="9.7" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="216.8" cy="208.9" r="10.2" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="160.8" cy="208.9" r="10.2" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="218.7" cy="256.0" r="14.1" fill="#f5df4d" opacity="0.61"/>
+<circle cx="162.8" cy="256.0" r="14.1" fill="#f5df4d" opacity="0.61"/>
+<line x1="191.3" y1="264.4" x2="191.3" y2="241.0" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<line x1="191.3" y1="241.0" x2="192.2" y2="211.1" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<line x1="192.2" y1="211.1" x2="193.2" y2="181.1" stroke="#d7d1c6" stroke-width="12.5" stroke-linecap="round"/>
+<line x1="193.2" y1="181.1" x2="193.8" y2="164.5" stroke="#d7d1c6" stroke-width="30.0" stroke-linecap="round"/>
+<line x1="192.2" y1="211.1" x2="221.1" y2="184.4" stroke="#d7d1c6" stroke-width="12.5" stroke-linecap="round"/>
+<line x1="221.1" y1="184.4" x2="219.5" y2="234.4" stroke="#d7d1c6" stroke-width="11.3" stroke-linecap="round"/>
+<line x1="219.5" y1="234.4" x2="218.0" y2="279.3" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<line x1="191.3" y1="264.4" x2="206.0" y2="274.4" stroke="#d7d1c6" stroke-width="21.3" stroke-linecap="round"/>
+<line x1="206.0" y1="274.4" x2="206.0" y2="349.4" stroke="#d7d1c6" stroke-width="15.0" stroke-linecap="round"/>
+<line x1="206.0" y1="349.4" x2="206.0" y2="417.8" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<line x1="192.2" y1="211.1" x2="165.1" y2="184.4" stroke="#d7d1c6" stroke-width="12.5" stroke-linecap="round"/>
+<line x1="165.1" y1="184.4" x2="163.5" y2="234.4" stroke="#d7d1c6" stroke-width="11.3" stroke-linecap="round"/>
+<line x1="163.5" y1="234.4" x2="162.0" y2="279.3" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<line x1="191.3" y1="264.4" x2="176.5" y2="274.4" stroke="#d7d1c6" stroke-width="21.3" stroke-linecap="round"/>
+<line x1="176.5" y1="274.4" x2="176.5" y2="349.4" stroke="#d7d1c6" stroke-width="15.0" stroke-linecap="round"/>
+<line x1="176.5" y1="349.4" x2="176.5" y2="417.8" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<circle cx="193.8" cy="151.1" r="19.2" fill="#d7d1c6" opacity="1.00"/>
+<circle cx="300.5" cy="279.3" r="33.4" fill="#26282e" opacity="1.00"/>
+<circle cx="79.5" cy="279.3" r="33.4" fill="#26282e" opacity="1.00"/>
+<line x1="352.0" y1="279.3" x2="28.0" y2="279.3" stroke="#5b606b" stroke-width="8.3" stroke-linecap="butt"/>
+<text x="16" y="28" fill="#e8e6e1" font-family="sans-serif" font-size="15" font-weight="700">데드리프트 · Deadlift</text>
+<text x="16" y="46" fill="#8b9099" font-family="sans-serif" font-size="11">lockout · stand</text>
+</svg>

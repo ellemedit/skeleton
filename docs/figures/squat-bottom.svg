@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="460" viewBox="0 0 380 460">
+<rect width="380" height="460" fill="#15171c"/>
+<line x1="0" y1="423.7" x2="380" y2="423.7" stroke="#2c3038" stroke-width="1"/>
+<circle cx="203.2" cy="354.8" r="24.4" fill="#f75e5e" opacity="0.78"/>
+<circle cx="173.7" cy="354.8" r="24.4" fill="#f75e5e" opacity="0.78"/>
+<circle cx="208.2" cy="372.1" r="19.9" fill="#c2f04b" opacity="0.47"/>
+<circle cx="178.7" cy="372.1" r="19.9" fill="#c2f04b" opacity="0.47"/>
+<circle cx="196.6" cy="363.7" r="16.9" fill="#d4f14b" opacity="0.50"/>
+<circle cx="180.4" cy="363.7" r="16.9" fill="#d4f14b" opacity="0.50"/>
+<circle cx="214.4" cy="373.0" r="13.7" fill="#79ec4a" opacity="0.38"/>
+<circle cx="185.0" cy="373.0" r="13.7" fill="#79ec4a" opacity="0.38"/>
+<circle cx="179.7" cy="374.5" r="20.4" fill="#f79158" opacity="0.73"/>
+<circle cx="153.2" cy="374.5" r="20.4" fill="#f79158" opacity="0.73"/>
+<circle cx="181.3" cy="347.5" r="19.1" fill="#adef4b" opacity="0.44"/>
+<circle cx="168.8" cy="335.6" r="22.5" fill="#f5df4d" opacity="0.61"/>
+<circle cx="198.9" cy="320.1" r="10.4" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="178.3" cy="320.1" r="10.4" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="195.4" cy="319.5" r="13.2" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="157.1" cy="319.5" r="13.2" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="184.3" cy="292.8" r="21.4" fill="#c2f04b" opacity="0.47"/>
+<circle cx="214.0" cy="294.7" r="10.6" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="160.7" cy="294.7" r="10.6" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="239.2" cy="305.4" r="9.7" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="143.2" cy="305.4" r="9.7" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="232.2" cy="306.5" r="10.2" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="136.2" cy="306.5" r="10.2" fill="#cdc6bd" opacity="0.16"/>
+<circle cx="246.2" cy="298.7" r="11.8" fill="#63ec4a" opacity="0.36"/>
+<circle cx="131.7" cy="298.7" r="11.8" fill="#63ec4a" opacity="0.36"/>
+<line x1="174.2" y1="367.8" x2="174.2" y2="344.4" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<line x1="174.2" y1="344.4" x2="180.0" y2="317.0" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<line x1="180.0" y1="317.0" x2="188.3" y2="292.7" stroke="#d7d1c6" stroke-width="12.5" stroke-linecap="round"/>
+<line x1="188.3" y1="292.7" x2="192.9" y2="279.2" stroke="#d7d1c6" stroke-width="30.0" stroke-linecap="round"/>
+<line x1="180.0" y1="317.0" x2="215.3" y2="295.4" stroke="#d7d1c6" stroke-width="12.5" stroke-linecap="round"/>
+<line x1="215.3" y1="295.4" x2="256.1" y2="316.5" stroke="#d7d1c6" stroke-width="11.3" stroke-linecap="round"/>
+<line x1="256.1" y1="316.5" x2="235.7" y2="279.5" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<line x1="174.2" y1="367.8" x2="189.0" y2="377.8" stroke="#d7d1c6" stroke-width="21.3" stroke-linecap="round"/>
+<line x1="189.0" y1="377.8" x2="221.6" y2="349.7" stroke="#d7d1c6" stroke-width="15.0" stroke-linecap="round"/>
+<line x1="221.6" y1="349.7" x2="212.8" y2="415.4" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<line x1="180.0" y1="317.0" x2="159.4" y2="295.4" stroke="#d7d1c6" stroke-width="12.5" stroke-linecap="round"/>
+<line x1="159.4" y1="295.4" x2="120.0" y2="316.5" stroke="#d7d1c6" stroke-width="11.3" stroke-linecap="round"/>
+<line x1="120.0" y1="316.5" x2="144.3" y2="279.5" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<line x1="174.2" y1="367.8" x2="159.5" y2="377.8" stroke="#d7d1c6" stroke-width="21.3" stroke-linecap="round"/>
+<line x1="159.5" y1="377.8" x2="192.2" y2="349.7" stroke="#d7d1c6" stroke-width="15.0" stroke-linecap="round"/>
+<line x1="192.2" y1="349.7" x2="183.3" y2="415.4" stroke="#d7d1c6" stroke-width="13.8" stroke-linecap="round"/>
+<circle cx="192.9" cy="265.9" r="19.2" fill="#d7d1c6" opacity="1.00"/>
+<circle cx="300.5" cy="279.5" r="33.4" fill="#26282e" opacity="1.00"/>
+<circle cx="79.5" cy="279.5" r="33.4" fill="#26282e" opacity="1.00"/>
+<line x1="352.0" y1="279.5" x2="28.0" y2="279.5" stroke="#5b606b" stroke-width="8.3" stroke-linecap="butt"/>
+<text x="16" y="28" fill="#e8e6e1" font-family="sans-serif" font-size="15" font-weight="700">백 스쿼트 · Back Squat</text>
+<text x="16" y="46" fill="#8b9099" font-family="sans-serif" font-size="11">bottom · depth</text>
+</svg>

@@ -1,0 +1,26 @@
+{
+  "name": "myo-renderer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Myo — a stylized muscle-motion mannequin renderer for visualizing joint movement, muscle activation, and weightlifting form.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "verify": "tsx scripts/verify.ts",
+    "snapshot": "tsx scripts/snapshot.ts"
+  },
+  "dependencies": {
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "@types/three": "^0.184.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.0",
+    "vite": "^5.4.0"
+  }
+}
